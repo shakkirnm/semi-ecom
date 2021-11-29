@@ -19,11 +19,10 @@ router.get('/addProduct',(req,res)=>{
 /* ------------------- PRODUCT ADDING AND SAVE TO DATABASE ------------------ */
 router.post("/addProduct",async(req,res)=>{
 
-  let proId = await productController.addProduct(req.body)
-
-   let productImage = req.files.image
-
-   productImage.mv("./public/productImages/"+proId+".jpg")
+  await productController.addProduct(req.body).then((proId)=>{
+    let productImage = req.files.image
+    productImage.mv("./public/productImages/"+proId+".jpg")
+  })
 
   res.redirect('/admin/addProduct')
 })

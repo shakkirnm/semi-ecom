@@ -11,7 +11,12 @@ module.exports = {
     addProduct : (product) =>{
         return new Promise(async(resolve, reject) => {
             let products =  await db.get().collection('products').insertOne(product)
-            resolve(products.insertedId)
+            if(products){
+                resolve(products.insertedId)
+            }else{
+                reject()
+            }
+            
         })
     },
 
