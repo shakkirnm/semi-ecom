@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<!-- Mirrored from www.ecommerce-admin.com/demo/page-form-product-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 03 Sep 2021 07:00:41 GMT -->
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Sample title - Ecommerce admin dashboard template</title>
+
+	<link href="/adminAssets/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+	<link href="/adminAssets/css/bootstrapf9e3.css?v=1.1" rel="stylesheet" type="text/css"/>
+
+	<link rel="stylesheet" href="/adminAssets/fonts/material-icon/css/round.css"/>
+
+	<!-- custom style -->
+	<link href="/adminAssets/css/uif9e3.css?v=1.1" rel="stylesheet" type="text/css"/>
+	<link href="/adminAssets/css/responsivef9e3.css?v=1.1" rel="stylesheet" />
+
+</head>
+<body>
+
+<b class="screen-overlay"></b>
+
+<aside class="navbar-aside" id="offcanvas_aside">
+<div class="aside-top">
+  <a href="/admin" class="brand-wrap">
+    <img src="/adminAssets/images/logo.svg" height="46" class="logo" alt="Ecommerce dashboard template">
+  </a>
+  <div>
+    <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
+  </div>
+</div> <!-- aside-top.// -->
+
+<nav>
+  <ul class="menu-aside">
+    <li class="menu-item"> 
+      <a class="menu-link" href="/admin"> <i class="icon material-icons md-home"></i> 
+        <span class="text">Dashboard</span> 
+      </a> 
+    </li>
+    <li class="menu-item has-submenu "> 
+      <a class="menu-link" href=""> <i class="icon material-icons md-shopping_bag"></i>  
+        <span class="text">Products</span> 
+      </a> 
+      <div class="submenu">
+        
+        <a href="/admin/addProduct">Add Product</a>
+      </div>
+    </li>
+    <li class="menu-item has-submenu active"> 
+      <a class="menu-link" href=""> <i class="icon material-icons md-shopping_cart"></i> 
+        <span class="text">Promo Code</span> 
+      </a>
+      <div class="submenu">
+        <a href="/admin/add-promo-code">Add Promo Code</a>
+        
+      </div> 
+    </li>
+    
+  </ul>
+  
+  
+  <br>
+  <br>
+</nav>
+</aside>
+
+<main class="main-wrap">
+
+<header class="main-header navbar">
+	<div class="col-search">
+		<form class="searchform">
+			<div class="input-group">
+			  <input list="search_terms" type="text" class="form-control" placeholder="Search term">
+			  <button class="btn btn-light bg" type="button"> <i class="material-icons md-search"></i> </button>
+			</div>
+			<datalist id="search_terms">
+			  <option value="Products">
+			  <option value="New orders">
+			  <option value="Apple iphone">
+			  <option value="Ahmed Hassan">
+			</datalist>
+		</form>
+	</div>
+	<div class="col-nav">
+     <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i class="md-28 material-icons md-menu"></i> </button>
+	 	<ul class="nav">
+	      <li class="nav-item">
+	          <a class="nav-link btn-icon" onclick="darkmode(this)" title="Dark mode" href="#"> <i class="material-icons md-nights_stay"></i> </a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link btn-icon" href="#"> <i class="material-icons md-notifications_active"></i> </a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#"> English </a>
+	      </li>
+	      <li class="dropdown nav-item">
+	        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#"> <img class="img-xs rounded-circle" src="/adminAssets/images/saki.png" alt="User"></a>
+	        <div class="dropdown-menu dropdown-menu-end">
+	          <a class="dropdown-item" href="#">My profile</a>
+	          <a class="dropdown-item" href="#">Settings</a>
+	          <a class="dropdown-item text-danger" href="#">Exit</a>
+	        </div>
+	      </li>
+	    </ul> 
+  	</div>
+</header>
+
+<section class="content-main" style="max-width: 720px">
+	
+	<div class="content-header">
+		<h2 class="content-title">Add Promocode </h2>
+     
+	</div>
+
+	<div class="card mb-4">
+          <div class="card-body">
+			<form action="/admin/add-promo-code" enctype="multipart/form-data" method="post">
+				<div class="mb-4">
+					<label for="product_name" class="form-label">Code Name</label>
+					<input type="text" required placeholder="Type here" name="code" class="form-control" id="product_name">
+				</div>
+
+				<div class="mb-4">
+					<label for="product_name" class="form-label">Minimum Purchase Amount</label>
+					<input type="text" required name="minPurchase" class="form-control">
+				</div>
+
+				
+				<div class="mb-4">
+				    <label for="product_name" class="form-label">Discount Amount</label>
+				     <input type="text" required name="discountAmount" class="form-control">   
+				</div>
+					  
+				
+
+
+				
+
+
+				<button type="submit" class="btn btn-primary">Submit item</button>
+
+			</form>
+          </div>
+    </div> <!-- card end// -->
+
+
+</section> <!-- content-main end// -->
+</main>
+
+<script>
+    if(localStorage.getItem("darkmode")){
+        var body_el = document.body;
+        body_el.className += 'dark';
+    }
+</script>
+
+<script src="/adminAssets/js/jquery-3.5.0.min.js"></script>
+<script src="/adminAssets/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JS -->
+<script src="/adminAssets/js/scriptc619.js?v=1.0"></script>
+
+</body>
+
+<!-- Mirrored from www.ecommerce-admin.com/demo/page-form-product-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 03 Sep 2021 07:00:41 GMT -->
+</html>
