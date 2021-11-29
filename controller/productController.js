@@ -119,7 +119,10 @@ module.exports = {
     checkNoteBook : (userId) =>{
         return new Promise(async(resolve, reject) => {
             let cart = await db.get().collection('cart').findOne({user : ObjectId(userId)})
-            let cartProducts = cart.products
+            if(cart){
+
+                var cartProducts = cart.products
+            }
 
             function prodExists(title){
                 return cartProducts.some(function(el) {
@@ -144,7 +147,7 @@ module.exports = {
                     }
                 }
             }else{
-                reject()
+                resolve()
             }
            
             if((prodExists('NoteBook')) && (noteBook[0].quantity>=3) ){
@@ -164,7 +167,10 @@ module.exports = {
     checkSanitizer : (userId) =>{
         return new Promise(async(resolve, reject) => {
             let cart = await db.get().collection('cart').findOne({user : ObjectId(userId)})
-            let cartProducts = cart.products
+            if(cart){
+
+                var cartProducts = cart.products
+            }
 
             function prodExists(title){
                 return cartProducts.some(function(el) {
@@ -184,7 +190,7 @@ module.exports = {
                     var discountPrice = 100
                 }
             }else{
-                reject()
+                resolve()
             }
 
             if((prodExists('Sanitizer')) && (Sanitizer[0].quantity>=10) ){
@@ -198,7 +204,10 @@ module.exports = {
     checkBag : (userId) =>{
         return new Promise(async(resolve, reject) => {
             let cart = await db.get().collection('cart').findOne({user : ObjectId(userId)})
-            let cartProducts = cart.products
+            if(cart){
+
+                var cartProducts = cart.products
+            }
 
             function prodExists(title){
                 return cartProducts.some(function(el) {
@@ -220,6 +229,18 @@ module.exports = {
                 reject()
             }
         })
+    },
+
+
+    placeOrder : (userId)=>{
+        return new Promise(async(resolve, reject) => {
+            let cart = await db.get().collection('cart').findOne({user : ObjectId(userId)})
+            if(cart){
+                await db.get().collection('cart').deleteOne({user : objectId(userId)})
+            }
+            resolve()
+        })
+        
     }
 
 

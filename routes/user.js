@@ -58,20 +58,23 @@ router.get('/cart',auth,async(req,res)=>{
   let userName = req.session.userName
   let userId = req.session.userId
   let cartProducts = await productController.getCartProduct(userId)
-  let cartProductDetails = cartProducts.products
+  if(cartProducts){
 
-  let finalCartproduct = cartProductDetails.map((i)=>{
-    let subTotal = i.quantity * Number(i.price)
-    return {...i,subTotal}
+    var cartProductDetails = cartProducts.products
     
-  })
-
-  let grandTotal =0;
-  finalCartproduct.forEach(i =>{
-    grandTotal += i.subTotal
-    return {...i,grandTotal}
-  })
-
+    var finalCartproduct = cartProductDetails.map((i)=>{
+      let subTotal = i.quantity * Number(i.price)
+      return {...i,subTotal}
+      
+    })
+    
+    var grandTotal =0;
+    finalCartproduct.forEach(i =>{
+      grandTotal += i.subTotal
+      return {...i,grandTotal}
+    })
+  }
+    
   req.session.grandTotal = grandTotal
 
   res.render('userPages/cart',{userName,cartProducts:finalCartproduct,grandTotal})
@@ -96,19 +99,25 @@ router.get('/checkout', auth, async (req, res, next) =>{
 
   await productController.checkNoteBook(req.session.userId).then((discountPrice)=>{
     req.session.noteDiscountPrice = discountPrice
+    console.log("hhhhhhhhhhhhhhhh");
+    console.log(discountPrice);
     req.session.noteRejected = false
     }).catch(()=>{
+      console.log("rejectedddd");
       req.session.noteRejected = true
     })
 
    if (req.session.noteDiscountPrice){
     grandTotal = grandTotal-req.session.noteDiscountPrice;
+    console.log("totallll");
+    console.log(grandTotal);
    }    
 
    await productController.checkSanitizer(req.session.userId).then((discountPrice)=>{
     req.session.sanitizerDiscountPrice = discountPrice
     req.session.sanitizerRejected = false
     }).catch(()=>{
+      console.log("santRject");
       req.session.sanitizerRejected = true
     })
 
@@ -119,10 +128,12 @@ router.get('/checkout', auth, async (req, res, next) =>{
    await productController.checkBag(req.session.userId).then(()=>{
     req.session.bagRejected = false
     }).catch(()=>{
+      console.log("bag reh");
       req.session.bagRejected = true
     })    
 
     if(req.session.noteRejected || req.session.sanitizerRejected || req.session.bagRejected){
+
       res.redirect('/cart')
     }else{
       res.render('userPages/checkout',{userName,grandTotal})    
@@ -147,6 +158,7 @@ router.post('/coupon-apply',async(req,res)=>{
 
 /* ----------------------- ORDER PLACED PAGE RENDERING ---------------------- */
 router.get('/placeOrder',(req,res)=>{
+  productController.placeOrder(req.session.userId)
   res.render('userPages/orderPlaced')
 })
 

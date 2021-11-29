@@ -12,6 +12,7 @@ var db = require ("./config/db")
 var app = express();
 var fileUpload = require("express-fileupload");
 var session = require("express-session")
+var Toastify = require('toastify-js')
 
 
 // view engine setup
